@@ -6,8 +6,8 @@ import configparser
 #configuring API key
 config = configparser.ConfigParser()
 config.read('.env')
-key = config['DEFAULT']['key']
-ai.configure(api_key=key)
+api_key = config['DEFAULT']['key']
+ai.configure(api_key=api_key)
 
 
 #function to load google gemini model
