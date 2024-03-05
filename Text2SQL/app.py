@@ -1,21 +1,23 @@
 import streamlit as st 
 import sqlite3
 import google.generativeai as ai
+import configparser
 
 #configuring API key
-key = 'AIzaSyDVtwAobYm5uayp_5yEMJzbb4L8-sFEHY0'
+config = configparser.ConfigParser()
+config.read('.env')
+key = config['DEFAULT']['key']
 ai.configure(api_key=key)
+
 
 #function to load google gemini model
 #fucntion to provide sql querry as response
-
 def gemini_response(ques,prompt):
     model = ai.GenerativeModel('gemini-pro')
     response = model.generate_content([prompt[0],ques])
     return response.text 
 
 #function to retrieve queery from sqllite database
-
 def read_sql_querry(sql,db):
     connect_to_db = sqlite3.connect(db)
     cur = connect_to_db.cursor()
@@ -32,7 +34,6 @@ def read_sql_querry(sql,db):
 
 
 #defining our prompt
-
 prompt = [
     """Imagine you are an SQLlite expert and your main job is to convert englis into sql querry !!
     Consider our database named student having 5 columns : ame varchar(35), 
