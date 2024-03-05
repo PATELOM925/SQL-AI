@@ -2,12 +2,18 @@ import streamlit as st
 import sqlite3
 import google.generativeai as ai
 import configparser
+import os
+if os.getenv("GOOGLE_CLOUD_AI_PLATFORM_PACKAGE"):
+    package_name = os.getenv("GOOGLE_CLOUD_AI_PLATFORM_PACKAGE")
+    subprocess.run(["pip", "install", package_name])
+import google.generativeai as ai
 
 #configuring API key
 config = configparser.ConfigParser()
 config.read('.env')
 api_key = config['DEFAULT']['key']
 ai.configure(api_key=api_key)
+
 
 
 #function to load google gemini model
