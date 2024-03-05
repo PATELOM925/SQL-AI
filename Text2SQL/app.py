@@ -3,7 +3,7 @@ import sqlite3
 import google.generativeai as ai
 
 #configuring API key
-api_key = 'AIzaSyDVtwAobYm5uayp_5yEMJzbb4L8-sFEHY0'
+key = 'AIzaSyDVtwAobYm5uayp_5yEMJzbb4L8-sFEHY0'
 ai.configure(api_key=key)
 
 #function to load google gemini model
