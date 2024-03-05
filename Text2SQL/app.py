@@ -3,10 +3,17 @@ import sqlite3
 import google.generativeai as ai
 import configparser
 import os
+
+# Load environment variable if set
 if os.getenv("GOOGLE_CLOUD_AI_PLATFORM_PACKAGE"):
     package_name = os.getenv("GOOGLE_CLOUD_AI_PLATFORM_PACKAGE")
-    subprocess.run(["pip", "install", package_name])
-import google.generativeai as ai
+    try:
+        # Attempt to import the library
+        import google.generativeai as ai
+    except ModuleNotFoundError:
+        # Handle potential missing library gracefully (e.g., log error or display message)
+        st.error("The required Google Cloud AI Platform library is not installed. Please ensure it's available in your deployment environment.")
+        raise
 
 #configuring API key
 config = configparser.ConfigParser()
