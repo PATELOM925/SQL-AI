@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 import google.generativeai as ai
 import configparser
-import os
+import os 
 
 # Load environment variable if set
 if os.getenv("GOOGLE_CLOUD_AI_PLATFORM_PACKAGE"):
